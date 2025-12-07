@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FileUpload } from './FileUpload';
 import { storageService } from '../services/storageService';
 import { dataService } from '../services/dataService';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/auth.context';
 
 interface UploadSectionProps {
   folderId?: string | null;

@@ -97,5 +97,29 @@ export const dataService = {
 
     if (error) throw error;
     return data;
+  },
+
+  async updateDocument(id: string, updates: Partial<Document>) {
+    const { data, error } = await supabase
+      .from('documents')
+      .update(updates as any)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  },
+
+  async updateDocumentStatus(id: string, status: 'inbox' | 'processed' | 'archived') {
+    const { data, error } = await supabase
+      .from('documents')
+      .update({ status })
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
   }
 };

@@ -36,6 +36,20 @@ export const storageService = {
     },
 
     /**
+     * Creates a signed URL for a file, valid for a limited time.
+     * @param path The path of the file in the bucket.
+     * @param expiresInSeconds Duration in seconds before the URL expires (default 3600).
+     */
+    async createSignedUrl(path: string, expiresInSeconds = 3600) {
+        const { data, error } = await supabase.storage
+            .from(BUCKET_NAME)
+            .createSignedUrl(path, expiresInSeconds);
+
+        if (error) throw error;
+        return data.signedUrl;
+    },
+
+    /**
      * Downloads a file from the bucket.
      * @param path The path of the file in the bucket.
      */

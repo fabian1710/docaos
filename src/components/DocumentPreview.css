@@ -1,0 +1,55 @@
+.document-preview {
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    padding: 0 !important;
+    /* Override Paper padding for full bleed */
+    background-color: var(--color-bg-paper-secondary);
+}
+
+.document-preview--empty {
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+}
+
+.document-preview__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #333;
+    /* Dark background for images */
+}
+
+.document-preview__pdf {
+    width: 100%;
+    height: 100%;
+    border: none;
+    flex: 1;
+}
+
+.document-preview__loading,
+.document-preview__error,
+.document-preview__unsupported {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-bg-paper);
+    color: var(--color-text-muted);
+    gap: var(--spacing-4);
+}
+
+.document-preview__link {
+    color: var(--color-primary);
+    text-decoration: underline;
+}

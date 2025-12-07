@@ -1,0 +1,149 @@
+.document-metadata {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg-paper);
+    /* Manila/Paper color */
+    padding: var(--spacing-6);
+    /* Added padding */
+}
+
+.document-metadata__header {
+    margin-bottom: var(--spacing-6);
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: var(--spacing-2);
+}
+
+.document-metadata__header h2 {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-lg);
+    color: var(--color-text-main);
+    margin: 0;
+}
+
+.document-metadata__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8);
+    /* Increased from 6 */
+    flex: 1;
+    padding: var(--spacing-4);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    /* Increased from 2 */
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-3);
+    padding: var(--spacing-2);
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: var(--radius-sm);
+    min-height: 100px;
+    align-content: flex-start;
+}
+
+.sticky-note {
+    background-color: #fef3c7;
+    /* Yellow-100 */
+    color: #92400e;
+    /* Yellow-800 */
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: 2px;
+    font-family: 'Courier Prime', monospace;
+    /* Typewriter font */
+    font-size: var(--font-size-sm);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    transform: rotate(-1deg);
+    transition: transform 0.2s;
+}
+
+.sticky-note:nth-child(even) {
+    transform: rotate(1deg);
+    background-color: #fffbeb;
+    /* Yellow-50 */
+}
+
+.sticky-note:hover {
+    transform: scale(1.05) rotate(0deg);
+    z-index: 1;
+}
+
+.sticky-note__remove {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 0;
+    line-height: 1;
+    opacity: 0.6;
+}
+
+.sticky-note__remove:hover {
+    opacity: 1;
+}
+
+.tags-input {
+    background: transparent;
+    border: none;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-2);
+    min-width: 100px;
+    flex: 1;
+}
+
+.tags-input:focus {
+    outline: none;
+    border-bottom: 1px solid var(--color-primary);
+}
+
+.document-metadata__info {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    padding: var(--spacing-4);
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-size-sm);
+}
+
+.info-label {
+    color: var(--color-text-muted);
+    font-family: var(--font-family-mono);
+}
+
+.info-value {
+    color: var(--color-text-main);
+    font-weight: 500;
+}
+
+.status-badge {
+    text-transform: capitalize;
+    padding: 2px 6px;
+    background-color: var(--color-bg-paper-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-xs);
+}
+
+.document-metadata__actions {
+    margin-top: var(--spacing-6);
+}
