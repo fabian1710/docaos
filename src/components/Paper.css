@@ -1,0 +1,26 @@
+.paper {
+    background-color: var(--color-bg-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    /* Glassmorphism hint */
+    backdrop-filter: blur(10px);
+}
+
+.paper--elevation-none {
+    box-shadow: none;
+    background-color: transparent;
+    border: none;
+}
+
+.paper--elevation-sm {
+    box-shadow: var(--shadow-sm);
+}
+
+.paper--elevation-md {
+    box-shadow: var(--shadow-md);
+}
+
+.paper--elevation-lg {
+    box-shadow: var(--shadow-lg);
+}

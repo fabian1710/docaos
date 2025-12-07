@@ -1,0 +1,7 @@
+.dashboard {
+    padding: var(--spacing-8);
+}
+
+.dashboard-content {
+    padding: var(--spacing-8);
+}
