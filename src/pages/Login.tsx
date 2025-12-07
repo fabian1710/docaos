@@ -24,28 +24,30 @@ export const Login: React.FC = () => {
       <div className="login-container">
         <div className="login-header">
           <h1 className="login-title">docaos</h1>
-          <p className="login-subtitle">Document Chaos Organizer</p>
+          <p className="login-subtitle">Est. 2025 • Document Chaos Organizer</p>
         </div>
         
-        <Paper className="login-form-paper" elevation="lg">
+        <Paper className="login-form-paper" elevation="md">
           <form onSubmit={handleLogin} className="login-form">
-            <h2 className="form-title">Welcome back</h2>
-            <p className="form-subtitle">Please enter your details to sign in.</p>
+            <div className="form-header">
+              <h2 className="form-title">Authorized Access</h2>
+              <p className="form-subtitle">Please identify yourself to access the archives.</p>
+            </div>
             
             <div className="form-fields">
               <Input
-                label="Email"
+                label="IDENTIFICATION (EMAIL)"
                 type="email"
-                placeholder="Enter your email"
+                placeholder="officer@docaos.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 fullWidth
                 required
               />
               <Input
-                label="Password"
+                label="SECURITY CLEARANCE (PASSWORD)"
                 type="password"
-                placeholder="Enter your password"
+                placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 fullWidth
@@ -53,13 +55,13 @@ export const Login: React.FC = () => {
               />
             </div>
             
-            <Button type="submit" fullWidth isLoading={isLoading} size="lg">
-              Sign in
+            <Button type="submit" fullWidth isLoading={isLoading} size="lg" variant="primary">
+              AUTHENTICATE
             </Button>
             
             <div className="form-footer">
-              <span className="text-muted">Don't have an account?</span>
-              <Button variant="ghost" size="sm" type="button">Sign up</Button>
+              <span className="text-muted">New personnel?</span>
+              <Button variant="ghost" size="sm" type="button">Submit Application</Button>
             </div>
           </form>
         </Paper>
