@@ -4,8 +4,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
+    background-color: var(--color-bg-overlay);
+    backdrop-filter: blur(2px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,30 +16,39 @@
 
 .dialog {
     background-color: var(--color-bg-surface);
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: var(--shadow-lg);
+    border-radius: 2px;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg), 0 0 0 4px rgba(255, 255, 255, 0.1);
+    /* Double border effect */
     width: 100%;
     max-width: 500px;
     max-height: 90vh;
     display: flex;
     flex-direction: column;
     animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Paper texture */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
 .dialog__header {
-    padding: var(--spacing-6);
-    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-4) var(--spacing-6);
+    border-bottom: 2px solid var(--color-border);
+    /* Thicker divider */
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 .dialog__title {
+    font-family: var(--font-family-mono);
     font-size: var(--font-size-lg);
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-text-main);
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .dialog__close {
@@ -55,14 +64,15 @@
 }
 
 .dialog__close:hover {
-    color: var(--color-text-main);
-    background-color: var(--color-bg-surface-hover);
+    color: var(--color-error);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .dialog__body {
     padding: var(--spacing-6);
     overflow-y: auto;
-    color: var(--color-text-muted);
+    color: var(--color-text-main);
+    font-family: var(--font-family-sans);
 }
 
 .dialog__footer {
@@ -72,7 +82,7 @@
     align-items: center;
     justify-content: flex-end;
     gap: var(--spacing-3);
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 /* Animations */
@@ -89,7 +99,7 @@
 @keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(20px) scale(0.95);
+        transform: translateY(10px) scale(0.98);
     }
 
     to {
@@ -101,9 +111,10 @@
 /* Error button variant override */
 .btn--error {
     background-color: var(--color-error) !important;
+    color: white !important;
+    border: none !important;
 }
 
 .btn--error:hover {
-    filter: brightness(1.1);
-    box-shadow: 0 0 15px rgba(239, 68, 68, 0.3) !important;
+    background-color: #991b1b !important;
 }

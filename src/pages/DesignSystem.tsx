@@ -4,6 +4,7 @@ import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { Chip } from '../components/Chip';
 import { Dialog } from '../components/Dialog';
+import { FolderStack } from '../components/FolderStack';
 import './DesignSystem.css';
 
 export const DesignSystem: React.FC = () => {
@@ -12,37 +13,32 @@ export const DesignSystem: React.FC = () => {
   return (
     <div className="design-system">
       <header className="ds-header">
-        <h1>Design System</h1>
-        <p>Overview of colors, typography, and components.</p>
+        <h1>Analogue Librarian</h1>
+        <p>A design system for digital tools with an analogue soul.</p>
       </header>
 
       <section className="ds-section">
-        <h2>Colors</h2>
+        <h2>Colors & Surfaces</h2>
         <div className="ds-grid">
           <Paper className="ds-card">
-            <h3>Backgrounds</h3>
-            <div className="color-swatch" style={{ background: 'var(--color-bg-app)' }}>bg-app</div>
-            <div className="color-swatch" style={{ background: 'var(--color-bg-surface)' }}>bg-surface</div>
-            <div className="color-swatch" style={{ background: 'var(--color-bg-surface-hover)' }}>bg-surface-hover</div>
+            <h3>Surfaces</h3>
+            <div className="color-swatch" style={{ background: 'var(--color-bg-app)', color: 'var(--color-text-main)' }}>Manila (App BG)</div>
+            <div className="color-swatch" style={{ background: 'var(--color-bg-surface)', color: 'var(--color-text-main)' }}>Paper (Surface)</div>
+            <div className="color-swatch" style={{ background: 'var(--color-bg-surface-hover)', color: 'var(--color-text-main)' }}>Archival Grey</div>
           </Paper>
           
           <Paper className="ds-card">
-            <h3>Primary</h3>
-            <div className="color-swatch" style={{ background: 'var(--color-primary)' }}>primary</div>
-            <div className="color-swatch" style={{ background: 'var(--color-primary-hover)' }}>primary-hover</div>
-            <div className="color-swatch" style={{ background: 'var(--color-primary-light)' }}>primary-light</div>
+            <h3>Ink & Text</h3>
+            <div className="color-swatch" style={{ background: 'var(--color-text-main)', color: '#fff' }}>Typewriter Black</div>
+            <div className="color-swatch" style={{ background: 'var(--color-text-muted)', color: '#fff' }}>Faded Stamp</div>
+            <div className="color-swatch" style={{ background: 'var(--color-text-accent)', color: '#fff' }}>Carbon Blue</div>
           </Paper>
 
           <Paper className="ds-card">
-            <h3>Text</h3>
-            <div className="color-swatch" style={{ background: 'var(--color-text-main)', color: '#000' }}>text-main</div>
-            <div className="color-swatch" style={{ background: 'var(--color-text-muted)', color: '#000' }}>text-muted</div>
-          </Paper>
-
-          <Paper className="ds-card">
-            <h3>Status</h3>
-            <div className="color-swatch" style={{ background: 'var(--color-success)' }}>success</div>
-            <div className="color-swatch" style={{ background: 'var(--color-error)' }}>error</div>
+            <h3>Office Supplies</h3>
+            <div className="color-swatch" style={{ background: 'var(--color-success)', color: '#fff' }}>Olive Green</div>
+            <div className="color-swatch" style={{ background: 'var(--color-warning)', color: '#000' }}>Mustard Yellow</div>
+            <div className="color-swatch" style={{ background: 'var(--color-error)', color: '#fff' }}>Alert Red</div>
           </Paper>
         </div>
       </section>
@@ -50,12 +46,15 @@ export const DesignSystem: React.FC = () => {
       <section className="ds-section">
         <h2>Typography</h2>
         <Paper className="ds-card">
-          <h1>Heading 1 (2.5rem)</h1>
-          <h2>Heading 2 (2rem)</h2>
-          <h3>Heading 3 (1.75rem)</h3>
-          <h4>Heading 4 (1.5rem)</h4>
-          <p>Body text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p className="text-muted">Muted text. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <h1>Heading 1 (Courier Prime)</h1>
+          <h2>Heading 2 (Courier Prime)</h2>
+          <h3>Heading 3 (Courier Prime)</h3>
+          <h4>Heading 4 (Courier Prime)</h4>
+          <p>Body text (Inter). The interface is digital, but the experience is tactile, warm, familiar — like opening a manila folder on an oak desk.</p>
+          <p className="text-muted">Muted text. Aesthetically 1975, behaviorally 2025.</p>
+          <div style={{ marginTop: '1rem' }}>
+            <span style={{ fontFamily: 'var(--font-family-label)', textTransform: 'uppercase', fontWeight: 'bold' }}>Label Font (Oswald)</span>
+          </div>
         </Paper>
       </section>
 
@@ -66,7 +65,7 @@ export const DesignSystem: React.FC = () => {
           <Paper className="ds-card">
             <h3>Buttons</h3>
             <div className="ds-row">
-              <Button variant="primary">Primary</Button>
+              <Button variant="primary">Primary Action</Button>
               <Button variant="secondary">Secondary</Button>
               <Button variant="ghost">Ghost</Button>
             </div>
@@ -76,35 +75,25 @@ export const DesignSystem: React.FC = () => {
               <Button size="lg">Large</Button>
             </div>
             <div className="ds-row">
-              <Button isLoading>Loading</Button>
+              <Button isLoading>Processing</Button>
               <Button disabled>Disabled</Button>
             </div>
             <div className="ds-row" style={{ width: '100%' }}>
-              <Button fullWidth>Full Width</Button>
+              <Button fullWidth>Full Width Button</Button>
             </div>
           </Paper>
 
           <Paper className="ds-card">
-            <h3>Inputs</h3>
+            <h3>Form Fields</h3>
             <div className="ds-col">
-              <Input label="Default Input" placeholder="Type something..." />
-              <Input label="With Error" error="This field is required" placeholder="Error state" />
-              <Input label="Full Width" fullWidth placeholder="Occupies full width" />
+              <Input label="Document Title" placeholder="Enter title..." />
+              <Input label="Required Field" error="This field is required" placeholder="Error state" />
+              <Input label="Full Width Input" fullWidth placeholder="Occupies full width" />
             </div>
           </Paper>
 
           <Paper className="ds-card">
-            <h3>Paper Elevations</h3>
-            <div className="ds-row">
-              <Paper elevation="none" className="p-4">None</Paper>
-              <Paper elevation="sm" className="p-4">Small</Paper>
-              <Paper elevation="md" className="p-4">Medium</Paper>
-              <Paper elevation="lg" className="p-4">Large</Paper>
-            </div>
-          </Paper>
-
-          <Paper className="ds-card">
-            <h3>Chips</h3>
+            <h3>Chips & Labels</h3>
             <div className="ds-col">
               <div className="ds-row">
                 <Chip label="Default" />
@@ -127,7 +116,23 @@ export const DesignSystem: React.FC = () => {
           <Paper className="ds-card">
             <h3>Dialogs</h3>
             <div className="ds-row">
-              <Button onClick={() => setIsDialogOpen(true)}>Open Dialog</Button>
+              <Button onClick={() => setIsDialogOpen(true)}>Open Index Card</Button>
+            </div>
+          </Paper>
+
+          <Paper className="ds-card">
+            <h3>Folder Stack</h3>
+            <div style={{ position: 'relative', height: '300px', border: '1px dashed var(--color-border)', overflow: 'hidden' }}>
+              <FolderStack
+                tabs={[
+                  { id: '1', label: 'Project A', color: 'var(--color-folder-manila)', icon: '📁' },
+                  { id: '2', label: 'Finances', color: 'var(--color-folder-blue)', icon: '💰' },
+                  { id: '3', label: 'Ideas', color: 'var(--color-folder-pink)', icon: '💡' },
+                ]}
+                activeTabId="1"
+                onTabChange={(id: string) => console.log(id)}
+                className="ds-folder-stack-demo"
+              />
             </div>
           </Paper>
         </div>
@@ -136,21 +141,21 @@ export const DesignSystem: React.FC = () => {
       <Dialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
-        title="Example Dialog"
+        title="CONFIRM ACTION"
         primaryAction={{
-          label: 'Confirm',
+          label: 'APPROVE',
           onClick: () => {
-            alert('Confirmed');
+            alert('Approved');
             setIsDialogOpen(false);
           }
         }}
         secondaryAction={{
-          label: 'Cancel',
+          label: 'CANCEL',
           onClick: () => setIsDialogOpen(false)
         }}
       >
-        <p>This is an example dialog content. It demonstrates the standard layout with a header, body content, and footer actions.</p>
-        <p style={{ marginTop: '1rem' }}>The actions are aligned to the bottom right.</p>
+        <p>This is an example dialog content. It looks like an index card or a typed note.</p>
+        <p style={{ marginTop: '1rem' }}>Are you sure you want to proceed with this action?</p>
       </Dialog>
     </div>
   );

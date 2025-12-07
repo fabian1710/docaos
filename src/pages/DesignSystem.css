@@ -1,5 +1,4 @@
 .design-system {
-    padding: var(--spacing-8);
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -7,31 +6,38 @@
 .ds-header {
     margin-bottom: var(--spacing-8);
     text-align: center;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: var(--spacing-4);
 }
 
 .ds-header h1 {
     font-size: 3rem;
     margin-bottom: var(--spacing-2);
-    background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    color: var(--color-text-main);
+    /* Typewriter effect */
+    background: none;
+    -webkit-text-fill-color: initial;
 }
 
 .ds-section {
-    margin-bottom: var(--spacing-8);
+    margin-bottom: var(--spacing-12);
 }
 
 .ds-section h2 {
-    margin-bottom: var(--spacing-4);
+    margin-bottom: var(--spacing-6);
     border-bottom: 1px solid var(--color-border);
     padding-bottom: var(--spacing-2);
+    font-family: var(--font-family-label);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
 }
 
 .ds-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-6);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-8);
 }
 
 .ds-card {
@@ -41,15 +47,26 @@
     gap: var(--spacing-4);
 }
 
+.ds-card h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border-bottom: 1px dashed var(--color-border);
+    padding-bottom: var(--spacing-2);
+    margin-bottom: var(--spacing-2);
+}
+
 .color-swatch {
     height: 60px;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: var(--font-size-sm);
-    font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 700;
+    font-family: var(--font-family-mono);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
 }
 
 .ds-row {
