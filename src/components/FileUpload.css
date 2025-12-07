@@ -1,0 +1,94 @@
+.file-upload {
+    border: 2px dashed var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-8);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.file-upload--dragging {
+    border-color: var(--color-folder-blue);
+    background-color: rgba(119, 158, 203, 0.1);
+    transform: scale(1.01);
+}
+
+.file-upload--error {
+    border-color: var(--color-error);
+    background-color: rgba(178, 34, 34, 0.05);
+}
+
+.file-upload__input {
+    display: none;
+}
+
+.file-upload__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-2);
+}
+
+.file-upload__icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-2);
+    opacity: 0.5;
+}
+
+.file-upload__text {
+    font-family: var(--font-family-sans);
+    color: var(--color-text-main);
+    font-size: var(--font-size-base);
+}
+
+.file-upload__label {
+    color: var(--color-text-accent);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.file-upload__label:hover {
+    color: var(--color-primary);
+}
+
+.file-upload__hint {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-2);
+}
+
+.file-upload__error-msg {
+    color: var(--color-error);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-4);
+    font-weight: 700;
+}
+
+.file-upload__status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-4);
+    font-family: var(--font-family-mono);
+    color: var(--color-text-muted);
+}
+
+.file-upload__spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-text-main);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

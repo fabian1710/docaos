@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Paper } from '../components/Paper';
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
+import { useLogin } from './Login.context';
 import './Login.css';
 
 export const Login: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      alert('Login functionality coming soon!');
-    }, 1500);
-  };
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    isLoading,
+    error,
+    handleLogin,
+  } = useLogin();
 
   return (
     <div className="login-page">
@@ -32,6 +29,11 @@ export const Login: React.FC = () => {
             <div className="form-header">
               <h2 className="form-title">Authorized Access</h2>
               <p className="form-subtitle">Please identify yourself to access the archives.</p>
+              {error && (
+                <div className="login-error">
+                  ERROR: {error.toUpperCase()}
+                </div>
+              )}
             </div>
             
             <div className="form-fields">

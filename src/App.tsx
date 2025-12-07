@@ -1,10 +1,32 @@
 import { useState } from 'react';
-import { Login } from './pages/Login';
+import { Login } from './pages/Login.view';
+import { Dashboard } from './pages/Dashboard';
 import { DesignSystem } from './pages/DesignSystem';
 import { Layout } from './components/Layout';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 
-function App() {
+function AppContent() {
+  const { session, isLoading } = useAuth();
   const [activeTab, setActiveTab] = useState<'dashboard' | 'documents' | 'design-system'>('dashboard');
+
+  if (isLoading) {
+    return (
+      <div style={{ 
+        height: '100vh', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        background: 'var(--color-bg-app)',
+        backgroundImage: 'var(--texture-paper-grain)'
+      }}>
+        Loading...
+      </div>
+    );
+  }
+
+  if (!session) {
+    return <Login />;
+  }
 
   const renderContent = () => {
     switch (activeTab) {
@@ -12,7 +34,7 @@ function App() {
         return <DesignSystem />;
       case 'dashboard':
       default:
-        return <Login />; // Using Login as dashboard placeholder for now
+        return <Dashboard />;
     }
   };
 
@@ -20,6 +42,14 @@ function App() {
     <Layout activeTab={activeTab} onTabChange={setActiveTab}>
       {renderContent()}
     </Layout>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
