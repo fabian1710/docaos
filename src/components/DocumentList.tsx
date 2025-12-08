@@ -51,16 +51,18 @@ export const DocumentList: React.FC<DocumentListProps> = ({
             </div>
           </div>
           <div className="document-item__actions">
-            <Button 
-              size="sm" 
-              variant="secondary"
-              onClick={(e) => {
-                e.stopPropagation();
-                onProcess(doc.id);
-              }}
-            >
-              Process
-            </Button>
+            {doc.status === 'inbox' && (
+              <Button 
+                size="sm" 
+                variant="secondary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onProcess(doc.id);
+                }}
+              >
+                Process
+              </Button>
+            )}
           </div>
         </Paper>
       ))}

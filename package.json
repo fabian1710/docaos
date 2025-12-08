@@ -11,6 +11,7 @@
     "gen-types": "npx supabase gen types typescript --project-id fednxhyxnmuiaqwrszrf > src/types/supabase.ts"
   },
   "dependencies": {
+    "@google/genai": "^1.31.0",
     "@supabase/supabase-js": "^2.86.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

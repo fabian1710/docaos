@@ -121,5 +121,65 @@ export const dataService = {
 
     if (error) throw error;
     return data;
+  },
+
+  async processDocument(id: string) {
+    try {
+      // 1. Fetch Document
+      const { data: doc, error: fetchError } = await supabase
+        .from('documents')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (fetchError || !doc) throw fetchError || new Error('Document not found');
+      if (!doc.storage_path) throw new Error('Document has no file');
+
+      // 2. Download File
+      const { data: fileBlob, error: downloadError } = await supabase.storage
+        .from('docaos-docs') // Hardcoded bucket name for now, should match storageService
+        .download(doc.storage_path);
+
+      if (downloadError || !fileBlob) throw downloadError || new Error('Failed to download file');
+
+      // 3. Convert to Base64
+      const base64Data = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileBlob);
+        reader.onload = () => {
+          const result = reader.result as string;
+          // Remove data URL prefix (e.g., "data:image/jpeg;base64,")
+          const base64 = result.split(',')[1];
+          resolve(base64);
+        };
+        reader.onerror = error => reject(error);
+      });
+
+      // 4. Analyze with AI
+      // Dynamic import to avoid circular dependencies if any, though unlikely here
+      const { aiService } = await import('./aiService');
+      const analysis = await aiService.analyzeDocument(base64Data, doc.mime_type || 'application/octet-stream');
+
+      // 5. Update Document
+      const updates: any = {
+        status: 'processed',
+        metadata: {
+          ...((doc.metadata as object) || {}),
+          ai_analysis: analysis
+        }
+      };
+
+      if (analysis.summary) updates.title = analysis.summary.substring(0, 50) + (analysis.summary.length > 50 ? '...' : ''); // Optional: Auto-title? Maybe just keep original title or use summary if title is generic
+      // Let's stick to updating metadata and status for now, maybe tags and type
+
+      if (analysis.keywords) updates.tags = [...(doc.tags || []), ...analysis.keywords];
+      if (analysis.document_type) updates.document_type = analysis.document_type;
+
+      return await this.updateDocument(id, updates);
+
+    } catch (error) {
+      console.error('Error processing document:', error);
+      throw error;
+    }
   }
 };

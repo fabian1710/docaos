@@ -95,6 +95,19 @@ export const DocumentDetail: React.FC<DocumentDetailProps> = ({ documentId, onBa
             document={document} 
             onSave={handleSaveMetadata} 
           />
+          
+          {/* AI Analysis Section */}
+          {document.metadata && (document.metadata as any).ai_analysis && (
+            <div className="ai-analysis-panel">
+              <h3>AI Analysis</h3>
+              <div className="ai-content">
+                <p><strong>Summary:</strong> {(document.metadata as any).ai_analysis.summary}</p>
+                <p><strong>Category:</strong> {(document.metadata as any).ai_analysis.category}</p>
+                <p><strong>Entities:</strong> {(document.metadata as any).ai_analysis.entities?.join(', ')}</p>
+                <p><strong>Date:</strong> {(document.metadata as any).ai_analysis.date}</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -33,11 +33,15 @@ export const Dashboard: React.FC<DashboardProps> = ({ onSelectDocument }) => {
 
   const handleProcess = async (id: string) => {
     try {
-      await dataService.updateDocumentStatus(id, 'processed');
+      setIsLoading(true); // Show global loading or handle per-item loading
+      await dataService.processDocument(id);
       // Refresh list
       await fetchDocuments();
     } catch (error) {
       console.error('Error processing document:', error);
+      alert('Failed to process document. Check console for details.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -56,6 +60,16 @@ export const Dashboard: React.FC<DashboardProps> = ({ onSelectDocument }) => {
           <h2>Inbox</h2>
           <DocumentList 
             documents={documents.filter(d => d.status === 'inbox')} 
+            onProcess={handleProcess}
+            onSelect={onSelectDocument}
+            isLoading={isLoading}
+          />
+        </div>
+
+        <div className="dashboard-section" style={{ marginTop: 'var(--spacing-8)' }}>
+          <h2>Processed</h2>
+          <DocumentList 
+            documents={documents.filter(d => d.status === 'processed')} 
             onProcess={handleProcess}
             onSelect={onSelectDocument}
             isLoading={isLoading}
